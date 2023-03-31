@@ -1,0 +1,41 @@
+ABCI:
+  group: '[group]'
+  job_execution_options: ''
+  job_script_preamble: ./job_script_preamble.sh
+generic:
+  batch_job_timeout: 600
+  function: main
+  job_command: python example_surrogate_dl.py
+  params_path: /Users/c-bata/go/src/github.com/c-bata/signate-hpo/run_test/submit/model
+  python_file: ./example_surrogate_dl.py
+  workspace: ./work
+logger:
+  stream_level:
+    master: ERROR
+    optimizer: ERROR
+    scheduler: ERROR
+optimize:
+  goal: minimize
+  parameters:
+  - lower: 64
+    name: batch_size
+    type: uniform_int
+    upper: 256
+  - lower: 0.0001
+    name: lr
+    type: uniform_float
+    upper: 1.0
+  - lower: 0.8
+    name: momentum
+    type: uniform_float
+    upper: 1.0
+  - lower: 1.0e-06
+    name: weight_lr_ratios
+    type: uniform_float
+    upper: 0.001
+  rand_seed: 222
+  search_algorithm: optimizer.MyOptimizer
+  trial_number: 100
+resource:
+  num_node: 4
+  type: local

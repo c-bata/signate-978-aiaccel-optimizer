@@ -1,0 +1,7 @@
+optuna-dashboard
+pandas
+requests
+torch
+scipy
+scikit-learn
+torchvision
